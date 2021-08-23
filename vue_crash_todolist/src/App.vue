@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import Header from './components/layout/Header';
-import Todos from './components/Todos';
-import AddTodo from './components/AddTodo';
+import Header  from './components/layout/Header';
+import Todos    from './components/Todos';
+import AddTodo  from './components/AddTodo';
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
     Header,
     Todos,
