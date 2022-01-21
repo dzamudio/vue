@@ -1,61 +1,71 @@
 <template>
   <div id="app">
     <Header />
-    <AddTodo v-on:add-todo="addTodo" />
+    <AddTodo />
     <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" />
   </div>
 </template>
 
 <script>
-import Header  from './components/layout/Header';
-import Todos    from './components/Todos';
-import AddTodo  from './components/AddTodo';
-import axios from 'axios';
+
+import Header from './components/layout/Header';
+import Todos from './components/Todos';
+import AddTodo from './components/AddTodo';
 
 export default {
-  name: 'App',
+  name: 'app',
   components: {
-    Header,
     Todos,
+    Header,
     AddTodo
+  },
+  methods: {
+    deleteTodo(id) {
+      this.todos = this.todos.filter(todo => todo.id !== id)
+    }
   },
   data() {
     return {
       todos: [
-        
+        {
+          id: 1,
+          title: "Todo One",
+          completed: false
+        },
+        {
+          id: 2,
+          title: "Todo Two",
+          completed: true
+        },
+        {
+          id: 3,
+          title: "Todo Three",
+          completed: false
+        }
       ]
     }
-  },
-  methods: {
-    deleteTodo(id) {
-      this.todos = this.todos.filter(todo => todo.id != id);
-    },
-    addTodo(newTodo) {
-      this.todos = [...this.todos, newTodo]
-    }
-  },
-  created() {
-    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5')
-      .then(res => this.todos = res.data)
-      .catch(err => console.log(err));
   }
 }
 </script>
 
 <style>
-  body, html {
-    margin: 0; 
-    padding: 1em;
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
-  * { font-family: Arial, Helvetica, sans-serif; }
-  
-  .btn { 
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.4;
+  }
+
+  .btn {
     display: inline-block;
     border: none;
-    background: #555;
+    background: #307fe2;
     color: #fff;
-    padding: 7px 2px;
+    padding: 7px 20px;
     cursor: pointer;
   }
 
